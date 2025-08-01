@@ -8,7 +8,7 @@ from langchain.chat_models import ChatOpenAI
 from langchain.chains.question_answering import load_qa_chain
 
 
-# ✅ Process the uploaded PDF
+# ✅ Extract and split PDF into chunks
 def process_pdf(uploaded_file) -> List[Document]:
     reader = PyPDF2.PdfReader(uploaded_file)
     text = ""
@@ -17,14 +17,14 @@ def process_pdf(uploaded_file) -> List[Document]:
         if page_text:
             text += page_text
 
-    # Split into smaller chunks for embedding
+    # Split into chunks
     splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
     chunks = splitter.split_text(text)
 
     return [Document(page_content=chunk) for chunk in chunks]
 
 
-# ✅ Handle user question and get answer
+# ✅ Handle Q&A over document
 def chat_with_pdf(docs, query, openai_api_key):
     embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
     vectorstore = FAISS.from_documents(docs, embeddings)
