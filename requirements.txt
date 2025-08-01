@@ -1,8 +1,6 @@
 streamlit
-openai
-pdfplumber
-langchain
-faiss-cpu
-python-dotenv
 PyPDF2
+openai
+langchain
 langchain-community
+faiss-cpu
