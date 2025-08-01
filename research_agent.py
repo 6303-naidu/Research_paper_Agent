@@ -6,7 +6,7 @@ from langchain.text_splitter import CharacterTextSplitter
 from langchain.docstore.document import Document
 from langchain.chat_models import ChatOpenAI
 from langchain.chains.question_answering import load_qa_chain
-from research_agent import process_pdf, chat_with_pdf
+
 
 
 # ✅ Extract and split PDF into chunks
